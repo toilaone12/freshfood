@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 28, 2022 lúc 10:52 AM
+-- Thời gian đã tạo: Th12 30, 2022 lúc 07:01 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.3.33
 
@@ -30,13 +30,15 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL,
   `name_admin` varchar(100) NOT NULL,
-  `username_admin` varchar(100) NOT NULL,
-  `sex_admin` varchar(5) NOT NULL,
-  `email_admin` varchar(100) NOT NULL,
-  `phone_admin` int(11) NOT NULL,
-  `address_admin` varchar(200) NOT NULL,
-  `password_admin` text NOT NULL,
-  `id_role` int(11) NOT NULL
+  `username` varchar(100) NOT NULL,
+  `sex` varchar(5) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` int(11) NOT NULL,
+  `address` varchar(200) NOT NULL,
+  `password` text NOT NULL,
+  `id_role` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -47,8 +49,10 @@ CREATE TABLE `admin` (
 
 CREATE TABLE `banner` (
   `id_banner` int(11) NOT NULL,
-  `image_banner` text NOT NULL,
-  `name_banner` varchar(100) NOT NULL
+  `image` text NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -59,8 +63,10 @@ CREATE TABLE `banner` (
 
 CREATE TABLE `benefit` (
   `id_benefit` int(11) NOT NULL,
-  `logo_benefit` varchar(200) NOT NULL,
-  `content_benefit` text NOT NULL
+  `logo` varchar(200) NOT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -71,8 +77,18 @@ CREATE TABLE `benefit` (
 
 CREATE TABLE `category` (
   `id_category` int(11) NOT NULL,
-  `name_category` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `category`
+--
+
+INSERT INTO `category` (`id_category`, `name`, `created_at`, `modified_at`) VALUES
+(1, 'Thực phẩm', NULL, NULL),
+(2, 'Hoa quả', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -82,8 +98,10 @@ CREATE TABLE `category` (
 
 CREATE TABLE `contact` (
   `id_contact` int(11) NOT NULL,
-  `map_contact` text NOT NULL,
-  `info_contact` text NOT NULL
+  `map` text NOT NULL,
+  `info` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -95,10 +113,11 @@ CREATE TABLE `contact` (
 CREATE TABLE `news` (
   `id_news` int(11) NOT NULL,
   `id_category` int(11) NOT NULL,
-  `image_news` text NOT NULL,
-  `name_news` varchar(100) NOT NULL,
-  `content_news` text NOT NULL,
-  `created_at` date NOT NULL
+  `image` text NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -109,14 +128,16 @@ CREATE TABLE `news` (
 
 CREATE TABLE `order` (
   `id_order` int(11) NOT NULL,
-  `code_order` varchar(10) NOT NULL,
-  `name_order` varchar(100) NOT NULL,
-  `phone_order` int(11) NOT NULL,
-  `email_order` varchar(100) NOT NULL,
-  `address_order` varchar(200) NOT NULL,
+  `code` varchar(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `phone` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(200) NOT NULL,
   `id_payment` int(11) NOT NULL,
-  `total_order` int(11) NOT NULL,
-  `status_order` int(11) NOT NULL
+  `total` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -127,11 +148,13 @@ CREATE TABLE `order` (
 
 CREATE TABLE `order_detail` (
   `id_order_detail` int(11) NOT NULL,
-  `code_order` int(11) NOT NULL,
-  `image_order_detail` int(11) NOT NULL,
-  `name_order_detail` int(11) NOT NULL,
-  `quantity_order_detail` int(11) NOT NULL,
-  `price_order_detail` int(11) NOT NULL
+  `code` int(11) NOT NULL,
+  `image` int(11) NOT NULL,
+  `name` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -142,7 +165,9 @@ CREATE TABLE `order_detail` (
 
 CREATE TABLE `payment` (
   `id_payment` int(11) NOT NULL,
-  `name_payment` varchar(100) NOT NULL
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -154,14 +179,16 @@ CREATE TABLE `payment` (
 CREATE TABLE `product` (
   `id_product` int(11) NOT NULL,
   `id_category` int(11) NOT NULL,
-  `code_product` varchar(10) NOT NULL,
-  `image_product` text NOT NULL,
-  `name_product` varchar(100) NOT NULL,
-  `quantity_product` int(11) NOT NULL,
-  `quantity_sold_product` int(11) NOT NULL,
-  `price_product` int(11) NOT NULL,
-  `description_product` text NOT NULL,
-  `content_product` text NOT NULL
+  `code` varchar(10) NOT NULL,
+  `image` text NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `quantity_sold` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -172,7 +199,9 @@ CREATE TABLE `product` (
 
 CREATE TABLE `role` (
   `id_role` int(11) NOT NULL,
-  `name_role` int(11) NOT NULL
+  `name` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -183,9 +212,10 @@ CREATE TABLE `role` (
 
 CREATE TABLE `slide` (
   `id_slide` int(11) NOT NULL,
-  `image_slide` text NOT NULL,
-  `name_slide` varchar(100) NOT NULL,
-  `created_at` date NOT NULL
+  `image` text NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -290,7 +320,7 @@ ALTER TABLE `benefit`
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `contact`
