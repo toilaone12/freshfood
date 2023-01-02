@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Danh sách danh mục</h1>
+            <h1>Thêm danh mục</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Danh mục</li>
+              <li class="breadcrumb-item active">Thêm danh mục</li>
             </ol>
           </div>
         </div>
@@ -21,7 +21,7 @@
       <div class="container-fluid">
         <div class="row">
           <!-- left column -->
-          <div class="col-md-12">
+          <div class="col-md-7">
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
@@ -29,17 +29,25 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form>
+              <form method="POST">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tên danh mục</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">
+                    <input type="text" class="form-control" name="name_category" id="exampleInputEmail1" placeholder="Tên danh mục">
+                    <div class="my-2">
+                      <?php
+                        if(isset($_SESSION['error'])){
+                          echo $_SESSION['error'];
+                          // $_SESSION['error'] = '';
+                        }
+                      ?>
+                    </div>
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Thêm danh mục</button>
+                  <button type="submit" name="insertCategory" class="btn btn-primary">Thêm danh mục</button>
                 </div>
               </form>
             </div>
