@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../public/backend/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -228,6 +229,29 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Tài khoản
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="?action=list-account" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách tài khoản</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="?action=insert-account" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Đăng ký tài khoản</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Danh mục sản phẩm
@@ -289,57 +313,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
-                UI Elements
+                Quảng cáo
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="?action=list-slide" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>General</p>
+                  <p>Danh sách quảng cáo</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
+                <a href="?action=insert-slide" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Icons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/buttons.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Buttons</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/sliders.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Sliders</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/modals.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Modals & Alerts</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/navbar.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Navbar & Tabs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/timeline.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Timeline</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/UI/ribbons.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ribbons</p>
+                  <p>Thêm quảng cáo</p>
                 </a>
               </li>
             </ul>
@@ -348,33 +336,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
-                Forms
+                Quyền quản lý
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/forms/general.html" class="nav-link">
+                <a href="?action=list-role" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>General Elements</p>
+                  <p>Danh sách quyền quản lý</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/forms/advanced.html" class="nav-link">
+                <a href="?action=insert-role" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Advanced Elements</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/editors.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Editors</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/forms/validation.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Validation</p>
+                  <p>Thêm quyền quản lý</p>
                 </a>
               </li>
             </ul>
@@ -383,25 +359,26 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Tables
+                Thanh toán
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/tables/simple.html" class="nav-link">
+                <a href="?action=list-payment" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Simple Tables</p>
+                  <p>Danh sách phương thức</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/tables/data.html" class="nav-link">
+                <a href="?action=insert-payment" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>DataTables</p>
+                  <p>Thêm phương thức</p>
                 </a>
               </li>
             </ul>
           </li>
+          
           <li class="nav-header">MISCELLANEOUS</li>
           <li class="nav-item">
             <a href="iframe.html" class="nav-link">

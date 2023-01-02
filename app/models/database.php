@@ -32,14 +32,5 @@
             }
         }
 
-        public function selectData(){
-            if($this->result){
-                $data = mysqli_fetch_assoc($this->result);
-            }else{ 
-                $data = 0;
-            }
-            return $data;
-        }
-
     }
 ?>
