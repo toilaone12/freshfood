@@ -15,6 +15,16 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+    <div class="content-message mx-2 mb-4">
+      <div class="container-fluid">
+        <?php
+          if(isset($_SESSION['message_slide'])){
+            echo $_SESSION['message_slide'];
+            $_SESSION['message_slide'] = '';
+          }
+        ?>
+      </div>
+    </div>
     <section class="content">
         <div class="container-fluid">
             <div class="row">

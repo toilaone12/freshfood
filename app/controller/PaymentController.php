@@ -28,9 +28,11 @@
                 if(count($errors) == 0){
                     $insert = $payment->insertPayment($name);
                     if($insert){
-                        echo "<script>window.localtion.href='?action=list-payment'</script>";
+                        $_SESSION['message_payment'] = '<span class="text-success">Thêm thành công phương thức '.$name.'</span>';   
+                        echo "<script>window.location.href='?action=list-payment'</script>";
                     }else{
-                        echo "<script>window.localtion.href='?action=list-payment'</script>";
+                        $_SESSION['message_payment'] = '<span class="text-danger">Thêm thành công phương thức '.$name.'</span>';   
+                        echo "<script>window.location.href='?action=list-payment'</script>";
                     }
                 }
             }
@@ -54,9 +56,11 @@
                     if(count($errors) == 0){
                         $update = $payment->updatePayment($id,$name);
                         if($update){
-                            echo "<script>window.localtion.href='?action=list-payment'</script>";
+                            $_SESSION['message_payment'] = '<span class="text-success">Sửa thành công phương thức '.$name.'</span>';     
+                            echo "<script>window.location.href='?action=list-payment'</script>";
                         }else{
-                            echo "<script>window.localtion.href='?action=list-payment'</script>";
+                            $_SESSION['message_payment'] = '<span class="text-danger">Sửa thất bại phương thức '.$name.'</span>';     
+                            echo "<script>window.location.href='?action=list-payment'</script>";
                         }
                 }
                 }
@@ -71,7 +75,8 @@
                 $id = $_GET['id'];
                 $delete = $payment->deletePayment($id);
                 if($delete){
-                    echo "<script>window.localtion.href='?action=list-payment'</script>";
+                    $_SESSION['message_payment'] = '<span class="text-success">Xóa thành công phương thức</span>';     
+                    echo "<script>window.location.href='?action=list-payment'</script>";
                 }
             }
             // require_once '../admin/views/slide/insert_slide.php';

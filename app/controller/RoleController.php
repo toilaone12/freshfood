@@ -28,9 +28,11 @@
                 if(count($errors) == 0){
                     $insert = $role->insertRole($name);
                     if($insert){
-                        echo "<script>window.localtion.href='?action=list-role'</script>";
+                        $_SESSION['message_role'] = '<span class="text-success">Thêm thành công quyền quản lý '.$name.'</span>';   
+                        echo '<script>window.location.href="?action=list-role"</script>';
                     }else{
-                        echo "<script>window.localtion.href='?action=list-role'</script>";
+                        $_SESSION['message_role'] = '<span class="text-danger">Thêm thất bại quyền quản lý '.$name.'</span>';   
+                        echo '<script>window.location.href="?action=list-role"</script>';
                     }
                 }
             }
@@ -54,9 +56,11 @@
                     if(count($errors) == 0){
                         $update = $role->updateRole($id,$name);
                         if($update){
-                            echo "<script>window.localtion.href='?action=list-role'</script>";
+                            $_SESSION['message_role'] = '<span class="text-success">Sửa thành công quyền quản lý '.$name.'</span>';   
+                            echo '<script>window.location.href="?action=list-role"</script>';
                         }else{
-                            echo "<script>window.localtion.href='?action=list-role'</script>";
+                            $_SESSION['message_role'] = '<span class="text-danger">Sửa thất bại quyền quản lý '.$name.'</span>';   
+                            echo '<script>window.location.href="?action=list-role"</script>';
                         }
                 }
                 }
@@ -71,7 +75,8 @@
                 $id = $_GET['id'];
                 $delete = $role->deleteRole($id);
                 if($delete){
-                    echo "<script>window.localtion.href='?action=list-role'</script>";
+                    $_SESSION['message_role'] = '<span class="text-success">Xóa thành công quyền quản lý</span>';   
+                    echo "<script>window.location.href='?action=list-role'</script>";
                 }
             }
             // require_once '../admin/views/slide/insert_slide.php';

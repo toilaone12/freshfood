@@ -14,7 +14,7 @@
 
         public function listAccount(){
             $lists = array();
-            $query = "SELECT * FROM admin";
+            $query = "SELECT *, a.created_at as 'created_at', a.name as 'name' ,r.name as 'name_role' FROM admin as a INNER JOIN role as r ON a.id_role = r.id_role";
             $result = $this->db->execute($query);
             while($data = $result->fetch_assoc()){
                 $lists[] = $data;
@@ -30,15 +30,15 @@
         }
 
         public function getAccountId($id){
-            $query = "SELECT * FROM admin WHERE id_admin = $id";
+            $query = "SELECT *, a.name as 'name' ,r.name as 'name_role' FROM admin as a INNER JOIN role as r ON a.id_role = r.id_role WHERE id_admin = $id";
             $result = $this->db->execute($query);
             $data = $result->fetch_assoc();
             return $data;
         }
 
-        public function updateAccount($id,$name,$username,$sex,$email,$phone,$address,$password,$id_role){
-            $query = "UPDATE admin SET name = '$name', username = '$username', sex = '$sex', email = '$email', 
-            phone = '$phone', address = '$address', password = '$password', 
+        public function updateAccount($id,$name,$sex,$email,$phone,$address,$id_role){
+            $query = "UPDATE admin SET name = '$name', sex = '$sex', email = '$email', 
+            phone = '$phone', address = '$address', 
             id_role = '$id_role', modified_at = '$this->timestamps' WHERE id_admin = $id";
             $result = $this->db->execute($query);
             return $result;

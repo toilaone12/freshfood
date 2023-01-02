@@ -1,4 +1,5 @@
 <?php
+    //Admin
     spl_autoload_register(function($className){
         require_once '../app/controller/'.$className.'.php';
     });
@@ -24,10 +25,35 @@
         $category = new CategoryController();
         $category->listCategory();
     }
+    if($action == 'insert-category'){
+        $request = new CategoryController();
+        $request->insertCategory();
+    }
+    if($action == 'edit-category'){
+        $request = new CategoryController();
+        $request->editCategory();
+    }
+    if($action == 'delete-category'){
+        $request = new CategoryController();
+        $request->deleteCategory();
+    }
+    //Product
+    if($action == 'insert-product'){
+        $request = new ProductController();
+        $request->insertProduct();
+    }else if($action == 'list-product'){
+        $product = new ProductController();
+        $product->listProduct();
+    }else if($action == 'edit-product'){
+        $product = new ProductController();
+        $product->updateProduct();
+    }else if($action == 'delete-product'){
+        $product = new ProductController();
+        $product->deleteProduct();
+    }
     
     //Slide
     if($action == 'insert-slide'){
-        // require '../app/controller/CategoryController.php';
         $slide = new SlideController();
         $slide->insertSlide();
     }else if($action == 'list-slide'){

@@ -37,9 +37,11 @@
                     if(move_uploaded_file($_FILES['image']['tmp_name'], '../admin/upload/slide/'.$image)){
                         $insert = $slide->insertSlide($name,$image);
                         if($insert){
-                            return "<script>window.localtion.href='?action=list-slide'</script>";
+                            $_SESSION['message_slide'] = '<span class="text-success">Thêm thành công quảng cáo '.$name.'</span>';
+                            echo '<script>window.location.href="?action=list-slide"</script>';
                         }else{
-                            return "<script>window.localtion.href='?action=list-slide'</script>";
+                            $_SESSION['message_slide'] = '<span class="text-danger">Thêm thất bại quảng cáo '.$name.'</span>';
+                            echo '<script>window.location.href="?action=list-slide"</script>';
                         }
                     }
                 }
@@ -75,16 +77,20 @@
                             unlink('../admin/upload/slide/'.$imageOld);
                             $update = $slide->updateSlide($id,$name,$image);
                             if($update){
-                                return "<script>window.localtion.href='?action=list-slide'</script>";
+                                $_SESSION['message_slide'] = '<span class="text-success">Sửa thành công quảng cáo '.$name.'</span>';
+                                echo '<script>window.location.href="?action=list-slide"</script>';
                             }else{
-                                return "<script>window.localtion.href='?action=list-slide'</script>";
+                                $_SESSION['message_slide'] = '<span class="text-danger">Sửa thất bại quảng cáo '.$name.'</span>';
+                                echo '<script>window.location.href="?action=list-slide"</script>';
                             }
                         }else{
                             $update = $slide->updateSlide($id,$name,$imageOld);
                             if($update){
-                                return "<script>window.localtion.href='?action=list-slide'</script>";
+                                $_SESSION['message_slide'] = '<span class="text-success">Sửa thành công quảng cáo '.$name.'</span>';
+                                echo '<script>window.location.href="?action=list-slide"</script>';
                             }else{
-                                return "<script>window.localtion.href='?action=list-slide'</script>";
+                                $_SESSION['message_slide'] = '<span class="text-danger">Sửa thất bại quảng cáo '.$name.'</span>';
+                                echo '<script>window.location.href="?action=list-slide"</script>';
                             }
                         }
                     }
@@ -102,8 +108,9 @@
                 $delete = $slide->deleteSlide($id);
                 if($delete){
                     unlink('../admin/upload/slide/'.$slideId['image']);
+                    $_SESSION['message_slide'] = '<span class="text-success">Xóa thành công quảng cáo '.$slideId['name'].'</span>';
+                    echo '<script>window.location.href="?action=list-slide"</script>';
                 }
-                return "<script>window.localtion.href='?action=list-slide'</script>";
             }
             // require_once '../admin/views/slide/insert_slide.php';
         }

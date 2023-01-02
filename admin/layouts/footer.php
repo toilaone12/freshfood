@@ -14,15 +14,30 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<!-- CKEDITOR -->
+<script src="../public/backend/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('ckeditor');
+    CKEDITOR.replace('ckeditor1');
+    CKEDITOR.replace('ckeditor2');
+    CKEDITOR.config.pasteFormWordPromptCleanup = true;
+    CKEDITOR.config.pasteFormWordRemoveFontStyles = false;
+    CKEDITOR.config.pasteFormWordRemoveStyles = false;
+    CKEDITOR.config.language = 'vi';
+    CKEDITOR.config.htmlEncodeOutput = false;
+    CKEDITOR.config.ProcessHTMLEntities = false;
+    CKEDITOR.config.entities = false;
+    CKEDITOR.config.entities_latin = false;
+    CKEDITOR.config.ForceSimpleAmpersand = true;
+</script>
 <!-- jQuery -->
 <script src="../public/backend/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="../public/backend/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
+<!-- <script>
   $.widget.bridge('uibutton', $.ui.button)
-</script>
+</script> -->
 <!-- Bootstrap 4 -->
 <script src="../public/backend/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->

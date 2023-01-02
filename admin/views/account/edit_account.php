@@ -4,12 +4,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Sửa quảng cáo</h1>
+            <h1>Sửa thông tin tài khoản</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Sửa quảng cáo</li>
+              <li class="breadcrumb-item active">Sửa thông tin tài khoản</li>
             </ol>
           </div>
         </div>
@@ -25,31 +25,15 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Sửa quảng cáo</h3>
+                <h3 class="card-title">Sửa thông tin tài khoản</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
               <form method="POST" enctype="multipart/form-data"> 
                 <div class="card-body">
-                  <div class="form-group mb-0">
-                      <label>Ảnh gốc</label><br>
-                      <img width="150" src="upload/slide/<?php echo $data['image']?>">
-                      <input type="hidden" value="<?php echo $data['image']?>" name="image_old">
-                  </div>
                   <div class="form-group">
-                    <label for="image">Hình ảnh</label>
-                    <input type="file" class="form-control-file" id="image" name="image">
-                    <div class="my-2">
-                      <?php
-                        if(isset($errors['image'])){
-                          echo $errors['image'];
-                        }
-                      ?>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Tên quảng cáo</label>
-                    <input type="text" class="form-control" value="<?php echo $data['name'];?>" name="name" id="exampleInputEmail1" placeholder="Tên quảng cáo">
+                    <label for="exampleInputEmail1">Họ & tên</label>
+                    <input type="text" class="form-control" value="<?php echo $data['name']?>" name="name" id="exampleInputEmail1" placeholder="Nhập họ và tên">
                     <div class="my-2">
                       <?php
                         if(isset($errors['name'])){
@@ -58,11 +42,66 @@
                       ?>
                     </div>    
                   </div>
+                  <div class="form-group">
+                    <label for="sex">Giới tính</label>
+                    <select name="sex" id="sex" class="form-control">
+                      <option value="">--Giới tính--</option>
+                      <option value="Nam" <?php echo ($data['sex'] == "Nam") ? 'selected' : "" ?>>Nam</option>
+                      <option value="Nữ" <?php echo ($data['sex'] == "Nữ") ? 'selected' : "" ?>>Nữ</option>
+                      <option value="Khác" <?php echo ($data['sex'] == "Khác") ? 'selected' : "" ?>>Khác</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" value="<?php echo $data['email']?>" name="email" id="email" placeholder="Nhập email">
+                    <div class="my-2">
+                      <?php
+                        if(isset($errors['email'])){
+                          echo $errors['email'];
+                        }
+                      ?>
+                    </div>    
+                  </div>
+                  <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="number" value="<?php echo $data['phone']?>" min=0 class="form-control" name="phone" id="phone">
+                    <div class="my-2">
+                      <?php
+                        if(isset($errors['phone'])){
+                          echo $errors['phone'];
+                        }
+                      ?>
+                    </div>    
+                  </div>
+                  <div class="form-group">
+                    <label for="address">Địa chỉ</label>
+                    <textarea name="address" class="form-control" id="address" placeholder="Nhập địa chỉ" cols="30" rows="10"><?php echo $data['address']?></textarea>
+                    <div class="my-2">
+                      <?php
+                        if(isset($errors['address'])){
+                          echo $errors['address'];
+                        }
+                      ?>
+                    </div>    
+                  </div>
+                  <div class="form-group">
+                    <label for="id_role">Quyền quản lý</label>
+                    <select name="id_role" id="id_role" class="form-control">
+                      <option value="">--Quyền quản lý--</option>
+                      <?php
+                      foreach($roles as $key => $role){
+                      ?>
+                      <option <?php echo ($data['id_role'] == $role['id_role']) ? 'selected' : "" ?> value="<?php echo $role['id_role']?>"><?php echo $role['name']?></option>
+                      <?php
+                      }
+                      ?>
+                    </select>
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" name="editSlide" class="btn btn-primary">Sửa quảng cáo</button>
+                  <button type="submit" name="editAccount" class="btn btn-primary">Sửa thông tin tài khoản</button>
                 </div>
               </form>
             </div>

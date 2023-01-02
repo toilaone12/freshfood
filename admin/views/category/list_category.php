@@ -9,12 +9,22 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-              <li class="breadcrumb-item active">Danh mục</li>
+              <li class="breadcrumb-item active">Danh số danh mục</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
+    <div class="content-message mx-2 mb-4">
+      <div class="container-fluid">
+        <?php
+          if(isset($_SESSION['message_category'])){
+            echo $_SESSION['message_category'];
+            $_SESSION['message_category'] = '';
+          }
+        ?>
+      </div>
+    </div>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -22,7 +32,7 @@
                 <div class="card">
                     <div class="card-header">
                     <h3 class="card-title">Danh sách danh mục</h3>
-    
+                    
                     <div class="card-tools">
                         <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -47,11 +57,16 @@
                         </thead>
                         <tbody>
                         <?php
+                            $i = 1;
                             foreach($lists as $key => $list){  
                         ?>
                         <tr>
-                            <td><?php echo $list['id_category']?></td>
+                            <td><?php echo $i++;?></td>
                             <td><?php echo $list['name']?></td>
+                            <td>
+                              <a href="?action=edit-category&id=<?php echo $list['id_category'];?>" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
+                              <a href="?action=delete-category&id=<?php echo $list['id_category'];?>" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
                         </tr>
                         <?php
                             }
