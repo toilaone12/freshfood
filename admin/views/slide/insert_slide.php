@@ -32,8 +32,9 @@
               <form method="POST" enctype="multipart/form-data"> 
                 <div class="card-body">
                   <div class="form-group mb-0">
-                    <label for="image">Hình ảnh</label>
-                    <input type="file" class="form-control-file" id="image" name="image">
+                    <label class="form-label" for="customFile">Hình ảnh</label>
+                    <img src="../public/backend/image/nophoto.png" width="172"alt="" style="height: 170px !important;" class="img-thumbnail image d-block mb-3">
+                    <input type="file" class="form-control-file" name="image" id="customFile" />
                     <div class="my-2">
                       <?php
                         if(isset($errors['image'])){

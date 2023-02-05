@@ -64,5 +64,12 @@
 <script src="../public/backend/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../public/backend/dist/js/pages/dashboard.js"></script>
+<script>
+  $(document).ready(function(){
+    $('input[type="file"][name="image"]').change(function(e){
+      $('.img-thumbnail').attr('src',URL.createObjectURL(e.target.files[0]));
+    });
+  });
+</script>
 </body>
 </html>

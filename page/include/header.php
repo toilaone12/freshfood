@@ -1,6 +1,6 @@
 <nav class="grid navbar navbar-expand-lg navbar-dark bg-green grid-header">
     <a class="navbar-brand" href="#">
-        <img src="../img/logo.png" class="w-50" alt="" srcset="">
+        <img src="public/frontend/img/logo.png" class="w-50" alt="" srcset="">
     </a>
     <a class="navbar-cart position-relative" href="#">
         <i class="fa-solid fa-basket-shopping text-white f-20" aria-hidden="true"></i>

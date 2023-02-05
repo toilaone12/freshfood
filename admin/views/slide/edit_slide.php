@@ -33,7 +33,7 @@
                 <div class="card-body">
                   <div class="form-group mb-0">
                       <label>Ảnh gốc</label><br>
-                      <img width="150" src="upload/slide/<?php echo $data['image']?>">
+                      <img width="150" class="img-thumbnail image d-block mb-3" src="upload/slide/<?php echo $data['image']?>">
                       <input type="hidden" value="<?php echo $data['image']?>" name="image_old">
                   </div>
                   <div class="form-group">

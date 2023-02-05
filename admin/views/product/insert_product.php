@@ -29,6 +29,9 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
+              <?php
+                print_r($errors);
+              ?>
               <form method="POST" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
@@ -45,44 +48,69 @@
                   </div>
                   <div class="form-group">
                     <label class="form-label" for="customFile">Hình ảnh</label>
+                    <img src="../public/backend/image/nophoto.png" width="172"alt="" style="height: 170px !important;" class="img-thumbnail image d-block mb-3">
                     <input type="file" class="form-control-file" name="image" id="customFile" />
                     <div class="my-2">
-                    
+                      <?php
+                        if(isset($errors['image'])){
+                          echo $errors['image'];
+                        }
+                      ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="name">Tên sản phẩm</label>
                     <input type="text" class="form-control" name="name" id="name" placeholder="Tên sản phẩm">
                     <div class="my-2">
-                    
+                      <?php
+                        if(isset($errors['name'])){
+                          echo $errors['name'];
+                        }
+                      ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="quantity">Số lượng</label>
-                    <input type="text" class="form-control" name="quantity" id="quantity" placeholder="Số lượng">
+                    <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Số lượng">
                     <div class="my-2">
-                    
+                      <?php
+                        if(isset($errors['quantity'])){
+                          echo $errors['quantity'];
+                        }
+                      ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="price">Giá tiền</label>
-                    <input type="text" class="form-control" name="price" id="price" placeholder="Giá tiền">
+                    <input type="number" class="form-control" name="price" id="price" placeholder="Giá tiền">
                     <div class="my-2">
-                    
+                      <?php
+                        if(isset($errors['price'])){
+                          echo $errors['price'];
+                        }
+                      ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="price">Mô tả</label>
                     <textarea name="description" placeholder="Mô tả" id="ckeditor1" class="form-control"></textarea>
                     <div class="my-2">
-                    
+                      <?php
+                        if(isset($errors['description'])){
+                          echo $errors['description'];
+                        }
+                      ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="price">Nội dung</label>
                     <textarea name="content" placeholder="Nội dung" id="ckeditor2" class="form-control"></textarea>
                     <div class="my-2">
-                    
+                      <?php
+                        if(isset($errors['content'])){
+                          echo $errors['content'];
+                        }
+                      ?>
                     </div>
                   </div>
                 </div>

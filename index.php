@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FreshFood</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <!-- <link rel="stylesheet" href="../css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="../../font/fontawesome-free-6.0.0-web/css/all.min.css">
-    <link rel="stylesheet" href="../css/bundle.css">
+    <link rel="stylesheet" href="public/frontend/css/style.css">
+    <link rel="stylesheet" href="public/frontend/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="public/frontend/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="public/font/fontawesome-free-6.0.0-web/css/all.min.css">
+    <link rel="stylesheet" href="public/frontend/css/bundle.css">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 </head>
 <body>
     <?php
-        include '../include/header.php';
+        include 'page/include/header.php';
     ?>
     <!-- Slider -->
     <div class="swiper-banner swiper">
@@ -32,20 +32,20 @@
     <!-- Feature -->
     <div class="container mt-5 mb-5">
         <div class="row">
-            <div class="col-sm-4 postion-relative">
-                <img src="../img/slider1.jpg" class="w-100" style="height: 200px;" alt="">
+            <div class="col-sm-4 position-relative">
+                <img src="public/frontend/img/slider1.jpg" class="w-100" style="height: 200px;" alt="">
                 <a href="" class="border-white feauture-link" style="background-color: transparent;">
                     <span class="btn rounded-0 bg-light btn py-md-2 px-md-3 py-sm-1 px-sm-1 m-1 text-uppercase py-2 px-3 font-weight-bold f-14">Thực phẩm</span>
                 </a>
             </div>
-            <div class="col-sm-4 postion-relative">
-                <img src="../img/slider1.jpg" class="w-100" style="height: 200px;" alt="">
+            <div class="col-sm-4 position-relative">
+                <img src="public/frontend/img/slider1.jpg" class="w-100" style="height: 200px;" alt="">
                 <a href="" class="border-white feauture-link" style="background-color: transparent;">
                     <span class="btn rounded-0 bg-light btn py-md-2 px-md-3 py-sm-1 px-sm-1 m-1 text-uppercase py-2 px-3 font-weight-bold f-14">Thực phẩm</span>
                 </a>
             </div>
-            <div class="col-sm-4 postion-relative">
-                <img src="../img/slider1.jpg" class="w-100" style="height: 200px;" alt="">        
+            <div class="col-sm-4 position-relative">
+                <img src="public/frontend/img/slider1.jpg" class="w-100" style="height: 200px;" alt="">        
                 <a href="" class="border-white feauture-link" style="background-color: transparent;">
                     <span class="btn rounded-0 bg-light btn py-md-2 px-md-3 py-sm-1 px-sm-1 m-1 text-uppercase py-2 px-3 font-weight-bold f-14">Thực phẩm</span>
                 </a>
@@ -159,12 +159,12 @@
     </div>
     <!-- Handbook -->
     <?php
-        include '../include/footer.php';
+        include 'page/include/footer.php';
     ?>
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
-    <script src="../js/jquery-3.0.0.min.js"></script>
+    <script src="public/frontend/js/jquery.min.js"></script>
+    <script src="public/frontend/js/popper.min.js"></script>
+    <script src="public/frontend/js/bootstrap.bundle.min.js"></script>
+    <script src="public/frontend/js/jquery-3.0.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <script>
         const swiper = new Swiper('.swiper-banner', {
@@ -176,9 +176,9 @@
             pagination: {
                 el: '.swiper-pagination',
             },
-            // autoplay: {
-            //     // delay: 5000,
-            // },
+            autoplay: {
+                delay: 5000,
+            },
             breakpoints: {
                 0: {
                     slidesPerView: 1,
