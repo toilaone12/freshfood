@@ -61,14 +61,21 @@
                       <option value="Nữ">Nữ</option>
                       <option value="Khác">Khác</option>
                     </select>
+                    <div class="my-2">
+                      <?php
+                        if(isset($errors['sex'])){
+                          echo $errors['sex'];
+                        }
+                      ?>
+                    </div> 
                   </div>
                   <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" name="email" id="email" placeholder="Nhập email">
                     <div class="my-2">
                       <?php
-                        if(isset($errors['name'])){
-                          echo $errors['name'];
+                        if(isset($errors['email'])){
+                          echo $errors['email'];
                         }
                       ?>
                     </div>    
@@ -78,8 +85,8 @@
                     <input type="number" min=0 class="form-control" name="phone" id="phone">
                     <div class="my-2">
                       <?php
-                        if(isset($errors['name'])){
-                          echo $errors['name'];
+                        if(isset($errors['phone'])){
+                          echo $errors['phone'];
                         }
                       ?>
                     </div>    
@@ -89,8 +96,8 @@
                     <textarea name="address" class="form-control" id="address" placeholder="Nhập địa chỉ" cols="30" rows="10"></textarea>
                     <div class="my-2">
                       <?php
-                        if(isset($errors['name'])){
-                          echo $errors['name'];
+                        if(isset($errors['address'])){
+                          echo $errors['address'];
                         }
                       ?>
                     </div>    
@@ -100,8 +107,8 @@
                     <input type="password" class="form-control" name="password" id="password">
                     <div class="my-2">
                       <?php
-                        if(isset($errors['name'])){
-                          echo $errors['name'];
+                        if(isset($errors['password'])){
+                          echo $errors['password'];
                         }
                       ?>
                     </div>    
@@ -118,6 +125,13 @@
                       }
                       ?>
                     </select>
+                    <div class="my-2">
+                      <?php
+                        if(isset($errors['idRole'])){
+                          echo $errors['idRole'];
+                        }
+                      ?>
+                    </div>
                   </div>
                 </div>
                 <!-- /.card-body -->

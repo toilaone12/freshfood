@@ -34,16 +34,32 @@
                 foreach($getCategory as $key => $category){
                 ?>
                 <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Tên danh mục</label>
-                    <input type="text" class="form-control" value="<?php echo $category['name']?>" name="name_category" id="exampleInputEmail1" placeholder="Tên danh mục">
-                    <div class="my-2">
-                      <?php
-                        if(isset($_SESSION['error'])){
-                          echo $_SESSION['error'];
-                          // $_SESSION['error'] = '';
-                        }
-                      ?>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="exampleInputEmail1">Tên danh mục</label>
+                      <input type="text" class="form-control" value="<?php echo $category['name']?>" name="name_category" id="exampleInputEmail1" placeholder="Tên danh mục">
+                      <div class="my-2">
+                        <?php
+                          if(isset($errors['name'])){
+                            echo $errors['name'];
+                          }
+                          ?>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                    <label for="parent">Thuộc danh mục</label>
+                      <select id="parent" name="parent_id" class="form-control">
+                        <option value="0">Danh mục gốc</option>
+                        <?php
+                          foreach($lists as $key => $cate){
+                            if($cate['parent_id'] == 0){
+                        ?>
+                        <option value="<?= $cate['id_category']?>" <?= ($cate['id_category'] == $category['parent_id']) ? 'selected' : ''?>><?= $cate['name']?></option>
+                        <?php
+                            }
+                          }
+                        ?>
+                      </select>
                     </div>
                   </div>
                 </div>

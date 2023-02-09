@@ -12,19 +12,23 @@
             $query = "SELECT * FROM category";
             $result = $this->db->execute($query);
             $listCategory = array();
-            while($category = $result->fetch_assoc()){
-                $listCategory[] = $category;
+            if($result->num_rows > 0){
+                while($category = $result->fetch_assoc()){
+                    $listCategory[] = $category;
+                }
+            }else{
+                $listCategory = [];
             }
             return $listCategory;
         }
         //them danh muc
-        public function insertCategory($name,$timestamps){
-            $query = "INSERT INTO category (name,created_at,modified_at) VALUES ('$name','$timestamps','$timestamps')";
+        public function insertCategory($name,$parentId,$timestamps){
+            $query = "INSERT INTO category (name,parent_id,created_at,modified_at) VALUES ('$name','$parentId','$timestamps','$timestamps')";
             $result = $this->db->execute($query);
             if($result){
                 return '<span class="text-success">Thêm thành công danh mục '.$name.'</span>';
             }else{
-                return '<span class="text-danger">Thêm thất bại danh mục '.$name.'</span>';
+                return '<span class="text-danger">Truy vấn thất bại!</span>';
             }
         }
         //lay ten danh muc 
@@ -38,8 +42,8 @@
             return $listCategory;
         }
         //sua danh muc
-        public function updateCategory($name,$idCategory,$timestamps){
-            $query = "UPDATE category SET name = '$name', modified_at = '$timestamps' WHERE id_category = $idCategory";
+        public function updateCategory($name,$parentId,$idCategory,$timestamps){
+            $query = "UPDATE category SET name = '$name', parent_id = '$parentId', modified_at = '$timestamps' WHERE id_category = $idCategory";
             $result = $this->db->execute($query);
             return $result;
         }

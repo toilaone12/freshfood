@@ -28,23 +28,47 @@
                 $email = $_POST['email'];
                 $phone = $_POST['phone'];
                 $address = $_POST['address'];
-                $password = md5($_POST['password']);
+                $password = $_POST['password'];
                 $idRole = $_POST['id_role'];
+                // print_r($_POST);
                 if($name == ''){
                     $errors['name'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
-                }else if(preg_match("/^['0-9']{0,1}$/",$name)){
+                }else if(preg_match("/^[0-9]{0,1}$/",$name)){
                     $errors['name'] = '<span class="text-danger">Chữ cái đầu tiên phải là ký tự!</span>';
                 }
-                if(preg_match("/^['0-9']{0,1}$/",$username)){
+                if($username == ''){
+                    $errors['username'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                }else if(preg_match("/^[0-9]{0,1}$/",$username)){
                     $errors['username'] = '<span class="text-danger">Chữ cái đầu tiên phải là ký tự!</span>';
                 }
+                if($sex == ''){
+                    $errors['sex'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                }
+                if($email == ""){
+                    $errors['email'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                }
+                if($phone == ""){
+                    $errors['phone'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                }
+                if($address == ""){
+                    $errors['address'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                }
+                if($password == ''){
+                    $errors['password'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                }else if(!preg_match("/^([A-Z]{1})(?=.*\d)([A-Za-z\d!@#$%^&*()_+\-=\[\]{};]{8,32})$/",$_POST['password'])){
+                    $errors['password'] = '<span class="text-danger">Chữ cái đầu phải viết hoa và ít nhất có 1 ký tự đặc biệt và 1 chữ số và phải ít nhất có 8 ký tự!</span>';
+                }
+                if($idRole == ''){
+                    $errors['idRole'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                }
                 if(count($errors) == 0){
-                    $insert = $account->insertAccount($name,$username,$sex,$email,$phone,$address,$password,$idRole);
+                    // echo "1";
+                    $insert = $account->insertAccount($name,$username,$sex,$email,$phone,$address,md5($_POST['password']),$idRole);
                     if($insert){
                         $_SESSION['message_account'] = '<span class="text-success">Thêm thành công tài khoản '.$username.'</span>';
                         echo "<script>window.location.href='?action=list-account'</script>";
                     }else{
-                        $_SESSION['message_account'] = '<span class="text-danger">Thêm thất bại tài khoản '.$username.'</span>';
+                        $_SESSION['message_account'] = '<span class="text-danger">Truy vấn có vấn đề, yêu cầu kiểm tra lại</span>';
                         echo "<script>window.location.href='?action=list-account'</script>";
                     }
                 }
@@ -71,8 +95,23 @@
                     $idRole = $_POST['id_role'];
                     if($name == ''){
                         $errors['name'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
-                    }else if(preg_match("/^['0-9']{0,1}$/",$name)){
+                    }else if(preg_match("/^[0-9]{0,1}$/",$name)){
                         $errors['name'] = '<span class="text-danger">Chữ cái đầu tiên phải là ký tự!</span>';
+                    }
+                    if($sex == ''){
+                        $errors['sex'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                    }
+                    if($email == ""){
+                        $errors['email'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                    }
+                    if($phone == ""){
+                        $errors['phone'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                    }
+                    if($address == ""){
+                        $errors['address'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
+                    }
+                    if($idRole == ''){
+                        $errors['idRole'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
                     }
                     if(count($errors) == 0){
                         $update = $account->updateAccount($id,$name,$sex,$email,$phone,$address,$idRole);
@@ -80,7 +119,7 @@
                             $_SESSION['message_account'] = '<span class="text-success">Sửa thành công tài khoản '.$username.'</span>';
                             echo "<script>window.location.href='?action=list-account'</script>";
                         }else{
-                            $_SESSION['message_account'] = '<span class="text-success">Sửa thất bại tài khoản '.$username.'</span>';
+                            $_SESSION['message_account'] = '<span class="text-success">Truy vấn có vấn đề, yêu cầu xem lại</span>';
                             echo "<script>window.location.href='?action=list-account'</script>";
                         }
                 }
