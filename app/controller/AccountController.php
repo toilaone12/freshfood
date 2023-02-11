@@ -5,7 +5,10 @@
         {
             
         }
-
+        function login(){
+            echo 123;
+        }
+        
         function listAccount(){
             require_once(realpath(dirname(__FILE__) . '/../models/account.php'));
             $account = new Account();

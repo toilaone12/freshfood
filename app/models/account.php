@@ -16,8 +16,13 @@
             $lists = array();
             $query = "SELECT *, a.created_at as 'created_at', a.name as 'name' ,r.name as 'name_role' FROM admin as a INNER JOIN role as r ON a.id_role = r.id_role";
             $result = $this->db->execute($query);
-            while($data = $result->fetch_assoc()){
-                $lists[] = $data;
+            // return $result;
+            if($result->num_rows > 0){
+                while($data = $result->fetch_assoc()){
+                    $lists[] = $data;
+                }
+            }else{
+                $lists = [];
             }
             return $lists;
         }

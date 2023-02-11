@@ -27,11 +27,12 @@
                 }
                 if(count($errors) == 0){
                     $insert = $role->insertRole($name);
+                    // echo $insert;
                     if($insert){
                         $_SESSION['message_role'] = '<span class="text-success">Thêm thành công quyền quản lý '.$name.'</span>';   
                         echo '<script>window.location.href="?action=list-role"</script>';
                     }else{
-                        $_SESSION['message_role'] = '<span class="text-danger">Thêm thất bại quyền quản lý '.$name.'</span>';   
+                        $_SESSION['message_role'] = '<span class="text-danger">Truy vấn có vấn đề!</span>';   
                         echo '<script>window.location.href="?action=list-role"</script>';
                     }
                 }

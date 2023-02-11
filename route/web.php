@@ -3,6 +3,11 @@
     spl_autoload_register(function($className){
         require_once '../app/controller/'.$className.'.php';
     });
+    //Login
+    if($action == 'login'){
+        $account = new AccountController();
+        $account->login();
+    }
     //Account
     if($action == 'insert-account'){
         // require '../app/controller/CategoryController.php';

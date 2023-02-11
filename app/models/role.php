@@ -25,7 +25,7 @@
         public function insertRole($name){
             $query = "INSERT INTO role VALUES ('','$name','$this->timestamps','$this->timestamps')";
             $result = $this->db->execute($query);
-            return $result;
+            return $query;
         }
 
         public function getRoleId($id){
