@@ -141,5 +141,19 @@
             }
             // require_once '../admin/views/slide/insert_slide.php';
         }
+
+        function login(){
+            require_once(realpath(dirname(__FILE__) . '/../models/account.php'));
+            // $account = new Account();
+            // if(isset($_GET['id'])){
+            //     $id = $_GET['id'];
+            //     $delete = $account->deleteAccount($id);
+            //     if($delete){
+            //         $_SESSION['message_account'] = '<span class="text-success">Xóa thành công tài khoản</span>';
+            //         echo "<script>window.location.href='?action=list-account'</script>";
+            //     }
+            // }
+            require_once '../admin/views/slide/insert_slide.php';
+        }
     }
 ?>

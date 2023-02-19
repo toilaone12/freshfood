@@ -4,14 +4,17 @@
     require '../app/models/database.php';
     $db = new Database();
     
-    require_once 'layouts/header.php';
-
-    if(isset($_GET['action'])){
-        $action = $_GET['action'];
+    if(isset($_SESSION['username'])){
+        if(isset($_GET['action'])){
+            require_once 'layouts/header.php';
+            $action = $_GET['action'];
+            require_once 'layouts/footer.php';
+        }else{
+            require '../admin/views/dashboard.php';
+        }
         require '../route/web.php';
     }else{
         require '../admin/views/dashboard.php';
     }
 
-    require_once 'layouts/footer.php';
 ?>

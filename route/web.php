@@ -17,6 +17,9 @@
     }else if($action == 'delete-account'){
         $account = new AccountController();
         $account->deleteAccount();
+    }else{
+        $account = new AccountController();
+        $account->login();
     }
 
     //Category
