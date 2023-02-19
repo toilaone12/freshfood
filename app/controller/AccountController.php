@@ -144,16 +144,54 @@
 
         function login(){
             require_once(realpath(dirname(__FILE__) . '/../models/account.php'));
-            // $account = new Account();
-            // if(isset($_GET['id'])){
-            //     $id = $_GET['id'];
-            //     $delete = $account->deleteAccount($id);
-            //     if($delete){
-            //         $_SESSION['message_account'] = '<span class="text-success">Xóa thành công tài khoản</span>';
-            //         echo "<script>window.location.href='?action=list-account'</script>";
-            //     }
-            // }
-            require_once '../admin/views/slide/insert_slide.php';
+            $account = new Account();
+            $errors = array();
+            if(isset($_POST['login'])){
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+                if($username == "" && $password == ""){
+                    $errors['error'] = '<span class="text-danger">Tên tài khoản và mật khẩu bị trống!</span>';
+                }else if($username == ""){
+                    $errors['error'] = '<span class="text-danger">Tên tài khoản bị trống!</span>';
+                }else if($password == ""){
+                    $errors['error'] = '<span class="text-danger">Mật khẩu bị trống!</span>';
+                }
+                if(count($errors) == 0){
+                    $login = $account->login($username,md5($password));
+                    // print_r($login);
+                    if($login->num_rows > 0){
+                        $row = $login->fetch_assoc();
+                        $name = $row['name'];
+                        $_SESSION['username'] = $username;
+                        $_SESSION['name'] = $name;
+                        echo "<script>window.location.href='?action=dashboard'</script>";
+                    }else{
+                        $errors['error'] = '<span class="text-danger">Tên tài khoản và mật khẩu bị sai!</span>';
+                    }
+                }
+            }
+            require_once '../admin/views/login.php';
+
+        }
+
+        function dashboard(){
+            if($_SESSION['username'] == "" && isset($_SESSION['username'])){
+                // echo "1";
+                echo "<script>window.location.href='http://127.0.0.1/freshfood/admin/'</script>";
+            }else{
+                require '../admin/views/dashboard.php';
+            }
+        }
+
+        function logout(){
+            unset($_SESSION['username']);
+            unset($_SESSION['name']);
+            echo "<script>window.location.href='http://127.0.0.1/freshfood/admin/'</script>";
+            if($_SESSION['username'] == "" && isset($_SESSION['username'])){
+                echo "<script>window.location.href='http://127.0.0.1/freshfood/admin/'</script>";
+            }else{
+                require '../admin/views/dashboard.php';
+            }
         }
     }
 ?>

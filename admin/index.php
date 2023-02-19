@@ -2,19 +2,20 @@
     session_start();
     require '../config/config.php';
     require '../app/models/database.php';
+    require '../app/controller/AccountController.php';
     $db = new Database();
     
-    if(isset($_SESSION['username'])){
-        if(isset($_GET['action'])){
+    if(isset($_GET['action'])){
+        if(isset($_SESSION['username'])){
             require_once 'layouts/header.php';
             $action = $_GET['action'];
+            require '../route/web.php';
             require_once 'layouts/footer.php';
         }else{
-            require '../admin/views/dashboard.php';
+            echo "<script>window.location.href='http://127.0.0.1/freshfood/admin/'</script>";
         }
-        require '../route/web.php';
     }else{
-        require '../admin/views/dashboard.php';
+        $account = new AccountController();
+        $account->login();
     }
-
 ?>

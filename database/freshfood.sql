@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 30, 2022 lúc 07:01 PM
+-- Thời gian đã tạo: Th2 19, 2023 lúc 05:20 PM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.3.33
 
@@ -29,17 +29,24 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL,
-  `name_admin` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `sex` varchar(5) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `phone` int(11) NOT NULL,
+  `phone` varchar(11) NOT NULL,
   `address` varchar(200) NOT NULL,
   `password` text NOT NULL,
   `id_role` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`id_admin`, `name`, `username`, `sex`, `email`, `phone`, `address`, `password`, `id_role`, `created_at`, `modified_at`) VALUES
+(5, 'Sơn', 'a', 'Nam', 'toilaone12@gmail.com', '0386278998', 'Số nhà 40, ngõ 3 Cầu Bươu, đường Cầu Bươu', '14869830af794743664a9da9c6841326', 4, '2023-02-09 14:39:20', '2023-02-09 14:42:04');
 
 -- --------------------------------------------------------
 
@@ -78,6 +85,7 @@ CREATE TABLE `benefit` (
 CREATE TABLE `category` (
   `id_category` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
+  `parent_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -86,9 +94,10 @@ CREATE TABLE `category` (
 -- Đang đổ dữ liệu cho bảng `category`
 --
 
-INSERT INTO `category` (`id_category`, `name`, `created_at`, `modified_at`) VALUES
-(1, 'Thực phẩm', NULL, NULL),
-(2, 'Hoa quả', NULL, NULL);
+INSERT INTO `category` (`id_category`, `name`, `parent_id`, `created_at`, `modified_at`) VALUES
+(4, 'Hoa quả', 0, '2023-02-09 15:07:15', '2023-02-09 15:07:15'),
+(5, 'Thực phẩm sạch', 0, '2023-02-09 15:07:34', '2023-02-09 15:07:34'),
+(6, 'Cá tươi', 5, '2023-02-09 15:08:06', '2023-02-09 15:19:26');
 
 -- --------------------------------------------------------
 
@@ -170,6 +179,14 @@ CREATE TABLE `payment` (
   `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `payment`
+--
+
+INSERT INTO `payment` (`id_payment`, `name`, `created_at`, `modified_at`) VALUES
+(1, 'Thanh toán khi nhận hàng', '2023-01-02 09:23:18', '2023-01-02 09:23:18'),
+(2, 'Thanh toán bằng thẻ TCB', '2023-01-02 09:23:29', '2023-01-02 09:23:48');
+
 -- --------------------------------------------------------
 
 --
@@ -191,6 +208,13 @@ CREATE TABLE `product` (
   `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `product`
+--
+
+INSERT INTO `product` (`id_product`, `id_category`, `code`, `image`, `name`, `quantity`, `quantity_sold`, `price`, `description`, `content`, `created_at`, `modified_at`) VALUES
+(2, 1, 'AC4F4047', 'anh_1675606451.jpg', 'a', 1, 0, 2, '<p>a</p>\r\n', '<p>c</p>\r\n', '2023-02-05 14:09:13', '2023-02-05 14:35:42');
+
 -- --------------------------------------------------------
 
 --
@@ -199,10 +223,20 @@ CREATE TABLE `product` (
 
 CREATE TABLE `role` (
   `id_role` int(11) NOT NULL,
-  `name` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `role`
+--
+
+INSERT INTO `role` (`id_role`, `name`, `created_at`, `modified_at`) VALUES
+(4, 'Quản lý', '2023-01-02 09:10:21', '2023-01-02 09:10:21'),
+(5, 'Nhân viên bán hàng', '2023-01-02 09:10:30', '2023-01-02 09:11:01'),
+(6, 'Quản lý kho hàng', '2023-01-02 15:08:19', '2023-01-02 15:09:58'),
+(7, 'Nhân viên thu ngân', '2023-01-02 15:09:49', '2023-01-02 15:09:49');
 
 -- --------------------------------------------------------
 
@@ -217,6 +251,14 @@ CREATE TABLE `slide` (
   `created_at` timestamp NULL DEFAULT NULL,
   `modified_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `slide`
+--
+
+INSERT INTO `slide` (`id_slide`, `image`, `name`, `created_at`, `modified_at`) VALUES
+(7, 'anh.jpg', 'QC1', '2023-01-02 05:32:58', '2023-01-02 05:32:58'),
+(9, 'anh_1672671638.jpg', 'QC3', '2023-01-02 15:00:38', '2023-01-02 15:00:38');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -302,7 +344,7 @@ ALTER TABLE `slide`
 -- AUTO_INCREMENT cho bảng `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `banner`
@@ -320,7 +362,7 @@ ALTER TABLE `benefit`
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `contact`
@@ -350,25 +392,25 @@ ALTER TABLE `order_detail`
 -- AUTO_INCREMENT cho bảng `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id_payment` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_payment` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_product` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `role`
 --
 ALTER TABLE `role`
-  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `slide`
 --
 ALTER TABLE `slide`
-  MODIFY `id_slide` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_slide` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -48,6 +48,12 @@
             $query = "DELETE FROM admin WHERE id_admin = $id";
             $result = $this->db->execute($query);
             return $result;
+        } 
+
+        public function login($username,$password){
+            $query = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
+            $result = $this->db->execute($query);
+            return $result;
         }
     }
 ?>

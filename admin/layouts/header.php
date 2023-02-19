@@ -190,7 +190,7 @@
           <img src="../public/backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?=(isset($_SESSION['username']) ? $_SESSION['name'] : "")?></a>
         </div>
       </div>
 
@@ -367,6 +367,15 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="?action=logout" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Đăng xuất
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
           </li>
           
           <li class="nav-header">MISCELLANEOUS</li>

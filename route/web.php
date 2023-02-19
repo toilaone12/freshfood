@@ -17,9 +17,12 @@
     }else if($action == 'delete-account'){
         $account = new AccountController();
         $account->deleteAccount();
-    }else{
+    }else if($action == 'dashboard'){
         $account = new AccountController();
-        $account->login();
+        $account->dashboard();
+    }else if($action == 'logout'){
+        $account = new AccountController();
+        $account->logout();
     }
 
     //Category
