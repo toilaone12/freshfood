@@ -40,6 +40,14 @@
                     $imageName = pathinfo($_FILES['image']['name'], PATHINFO_FILENAME); //lay ten name
                     $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION); // pathinfo: lay thong tin duong dan
                     $image = $imageName.'.'.$extension;
+                    if($_FILES['image']['name'] != ''){
+                        if($size > 500000){
+                            $errors['image'] = '<span class="text-danger">Quá kích thước ảnh cho phép!</span>';
+                        }
+                        else if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'ico' && $extension != 'webp'){
+                            $errors['image'] = '<span class="text-danger">Sai định dạng của ảnh!</span>';
+                        }
+                    }
                 }else{
                     $errors['image'] = '<span class="text-danger">Bạn chưa thêm ảnh, yêu cầu thêm vào!</span>';
                 }
@@ -100,7 +108,7 @@
                         if($size > 500000){
                             $errors['image'] = '<span class="text-danger">Quá kích thước ảnh cho phép!</span>';
                         }
-                        else if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg'){
+                        else if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'ico' && $extension != 'webp'){
                             $errors['image'] = '<span class="text-danger">Sai định dạng của ảnh!</span>';
                         }
                     }

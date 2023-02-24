@@ -68,6 +68,25 @@
   $(document).ready(function(){
     $('input[type="file"][name="image"]').change(function(e){
       $('.img-thumbnail').attr('src',URL.createObjectURL(e.target.files[0]));
+      $('.img-profile').attr('src',URL.createObjectURL(e.target.files[0]));
+    });
+    $('.click.profile-info').click(function(){
+      $('.profile-info').addClass('active');
+      $('.profile-password').removeClass('active');
+      $('.form-password').addClass('d-none');
+      $('.form-profile').addClass('d-block');
+      if($('.form-password').hasClass('d-block')){
+        $('.form-password').removeClass('d-block');
+      }
+    });
+    $('.click.profile-password').click(function(){
+      $('.profile-info').removeClass('active');
+      $('.profile-password').addClass('active');
+      $('.form-password').addClass('d-block');
+      $('.form-profile').addClass('d-none');
+      if($('.form-profile').hasClass('d-block')){
+        $('.form-profile').removeClass('d-block');
+      }
     });
   });
 </script>

@@ -29,9 +29,6 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <?php
-                print_r($errors);
-              ?>
               <form method="POST" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">

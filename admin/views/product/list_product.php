@@ -75,10 +75,10 @@
                             <td><?php echo $list['name_category']?></td>
                             <td><?php echo $list['name']?></td>
                             <td><?php echo $list['quantity']?></td>
-                            <td><?php echo $list['price']?></td>
+                            <td><?php echo number_format($list['price'],0,',','.')?> đ</td>
                             <td><?php echo $list['description']?></td>
                             <td><?php echo $list['content']?></td>
-                            <td><?php echo date('d/m/Y H:i:s',strtotime($list['created_at']))?></td>
+                            <td><?php echo date('d/m/Y H:i',strtotime($list['created_at']))?></td>
                             <td>
                               <a href="?action=edit-product&id=<?php echo $list['id_product']?>" class="btn btn-success">
                                 <i class="fa-solid fa-pen-to-square"></i>

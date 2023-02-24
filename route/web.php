@@ -3,11 +3,6 @@
     spl_autoload_register(function($className){
         require_once '../app/controller/'.$className.'.php';
     });
-    //Login
-    if($action == 'login'){
-        $account = new AccountController();
-        $account->login();
-    }
     //Account
     if($action == 'insert-account'){
         // require '../app/controller/CategoryController.php';
@@ -22,6 +17,21 @@
     }else if($action == 'delete-account'){
         $account = new AccountController();
         $account->deleteAccount();
+    }else if($action == 'dashboard'){
+        $account = new AccountController();
+        $account->dashboard();
+    }else if($action == 'logout'){
+        $account = new AccountController();
+        $account->logout();
+    }else if($action == 'forgot'){
+        // $account = new AccountController();
+        // $account->login();
+    }else if($action == 'profile'){
+        $account = new AccountController();
+        $account->profile();
+    }else if($action == ''){
+        $account = new AccountController();
+        $account->login();
     }
 
     //Category

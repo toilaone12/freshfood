@@ -24,11 +24,15 @@
                 $extension = pathinfo($_FILES['image']['name'],PATHINFO_EXTENSION);
                 $image = $imageName.'_'.time().'.'.$extension;
                 $size = $_FILES['image']['size'];
-                if($size > 500000){
-                    $errors['image'] = '<span class="text-danger">Quá kích thước ảnh cho phép!</span>';
-                }
-                if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg'){
-                    $errors['image'] = '<span class="text-danger">Sai định dạng của ảnh!</span>';
+                if($_FILES['image']['name'] != ''){
+                    if($size > 500000){
+                        $errors['image'] = '<span class="text-danger">Quá kích thước ảnh cho phép!</span>';
+                    }
+                    else if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'ico' && $extension != 'webp'){
+                        $errors['image'] = '<span class="text-danger">Sai định dạng của ảnh!</span>';
+                    }
+                }else{
+                    $errors['image'] = '<span class="text-danger">Bạn chưa thêm ảnh!</span>';
                 }
                 if($name == ''){
                     $errors['name'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
@@ -66,15 +70,19 @@
                     if($name == ''){
                         $errors['name'] = '<span class="text-danger">Không được để trống dữ liệu!</span>';
                     }
-                    if(count($errors) == 0){
+                    if($_FILES['image']['name'] != ''){
                         if($size > 500000){
                             $errors['image'] = '<span class="text-danger">Quá kích thước ảnh cho phép!</span>';
                         }
-                        if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg'){
+                        else if($extension != 'jpg' && $extension != 'png' && $extension != 'jpeg' && $extension != 'ico' && $extension != 'webp'){
                             $errors['image'] = '<span class="text-danger">Sai định dạng của ảnh!</span>';
                         }
+                    }
+                    if(count($errors) == 0){
                         if(move_uploaded_file($_FILES['image']['tmp_name'], '../admin/upload/slide/'.$image)){
-                            unlink('../admin/upload/slide/'.$imageOld);
+                            if(file_exists('../admin/upload/slide/'.$imageOld)){
+                                unlink('../admin/upload/slide/'.$imageOld);
+                            }
                             $update = $slide->updateSlide($id,$name,$image);
                             if($update){
                                 $_SESSION['message_slide'] = '<span class="text-success">Sửa thành công quảng cáo '.$name.'</span>';

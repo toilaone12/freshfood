@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="../public/backend/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../public/backend/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../public/backend/dist/css/style.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../public/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
@@ -190,7 +191,7 @@
           <img src="../public/backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="?action=profile" class="d-block"><?=(isset($_SESSION['username']) ? $_SESSION['name'] : "")?></a>
         </div>
       </div>
 
@@ -367,6 +368,14 @@
                 </a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="?action=logout" class="nav-link">
+              <i class="nav-icon fa-solid fa-right-from-bracket"></i>
+              <p>
+                Đăng xuất
+              </p>
+            </a>
           </li>
           
           <li class="nav-header">MISCELLANEOUS</li>
